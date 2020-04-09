@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
+@if(session()->has('status')) 
+   <h2 style="color:greenyellow">
+{{session()->get('status')}}
+   </h2>
+@endif
+
+
 <ul>
 <li><a href="{{route('home')}}">home</a></li>
 <li><a href="{{route('about')}}">about</a></li>

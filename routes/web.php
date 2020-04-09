@@ -31,6 +31,6 @@ Route::get('/home' , 'HomeController@home')->name('home');
 //     return view('about');
 // });
 
-Route::get('/login' , 'HomeController@login')->name('login'); 
+// Route::get('/login' , 'HomeController@login')->name('login'); 
 Route::get('/about' ,'HomeController@about')->name('about');
-Route::resource('/posts', 'PostController')->only(['index','show','create' ,'store']) ; 
+Route::resource('/posts', 'PostController')->only(['index','show','create' ,'store','edit','update']) ; 

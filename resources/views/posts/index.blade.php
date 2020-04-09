@@ -14,13 +14,14 @@
         <th><strong>active</strong></th>
         <th><strong>body</strong></th>
         <th><strong>created_at</strong></th>
+        <th>soso</th>
     </tr>
 
    
     @forelse ($posts as $post)
         <tr>     
        
-    <th><a href="{{route('posts.show',['post' =>$post->id])}}">{{$post->title}}</a></th>
+    <th><a href="{{route('posts.show',['post'=>$post->id])}}">{{$post->title}}</a></th>
         <th>{{$post->content}}</th>
         <th>{{$post->slug}}</th>
         <th>    
@@ -32,6 +33,7 @@
         </th>
         <th>{{$post->body}}</th>
         <th>{{$post->created_at->diffForHumans()}}</th>
+        <th><a href="{{route('posts.edit', ['post' => $post->id])}}">edit post</a></th>
 
     </tr>
 

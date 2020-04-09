@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePost;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -38,22 +39,35 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
-     //   dd($request->all()) ; //for received all data
-        $post = new Post() ; 
+//validate les data // in StorePost is a request class created by me
+        //    $validateData =  $request->validate([
+        //         'title'=> 'required|min:4|max:10' , 
+        //         'content' =>'required' , 
+        //         'slug' =>'required' , 
+        //         'active'=>'required'
+        //     ]);
 
-     $post->title = $request->input('title'); 
-     $post->content = $request->input('content') ; 
-     $post->slug = $request->input('slug'); 
-     $post->active = $request->input('active') ; 
-     $post->body = $request->input('body'); 
+     //   dd($request->all()) ; //for received all data
+    // $post = new Post() ; 
+
+    //  $post->title = $request->input('title'); 
+    //  $post->content = $request->input('content') ; 
+    //  $post->slug = $request->input('slug'); 
+    //  $post->active = $request->input('active') ; 
+    //  $post->body = $request->input('body'); 
 
      //$post->slug = Str::slug($post->title , '-') ; 
-   
+  // $post->save();
 
-     $post->save();
-     return redirect()->route('posts.show' , [$post->id]); 
+
+
+  $post = Post::create($request->only(['title' , 'content' , 'slug' , 'active' , 'body'])) ; 
+
+    
+     $request->session()->flash('status' , 'bien ajouter!!') ; 
+     return redirect()->route('posts.index'); 
      
 
     // dd('your title is : '. $title , 'your content is ' .$content) ; 
@@ -83,7 +97,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id) ; 
+        return view('posts.edit' , [
+            'post'=>$post
+        ]) ; 
     }
 
     /**
@@ -93,9 +110,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePost $request, $id)
     {
-        //
+       $post= Post::findOrFail($id) ; 
+        $post->title = $request->input('title') ; 
+        $post->content = $request->input('content') ; 
+        $post->slug = $request->input('slug') ; 
+        $post->active = $request->input('active') ; 
+        $post->body = $request->input('body') ; 
+        $post->save();
+
+    $request->session()->flash('status' , 'bien Modifier!!') ; 
+     return redirect()->route('posts.index'); 
+
+
+
     }
 
     /**
