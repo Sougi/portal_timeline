@@ -16,15 +16,6 @@
 </ul>
 
 @yield('content')
-<p>tets</p>
-<p>tets</p>
-
-<p>tets</p>
-
-<p>tets</p>
-
-<p>tets</p>
-<p>tets</p>
 
 </body>
 </html>
