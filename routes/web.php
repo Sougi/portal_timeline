@@ -33,4 +33,4 @@ Route::get('/home' , 'HomeController@home')->name('home');
 
 // Route::get('/login' , 'HomeController@login')->name('login'); 
 Route::get('/about' ,'HomeController@about')->name('about');
-Route::resource('/posts', 'PostController')->only(['index','show','create' ,'store','edit','update']) ; 
+Route::resource('/posts', 'PostController'); 
