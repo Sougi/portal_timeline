@@ -35,7 +35,7 @@
         <th>{{$post->created_at->diffForHumans()}}</th>
         <th><a href="{{route('posts.edit', ['post' => $post->id])}}">edit post</a>
         
-       <span> <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST">
+        <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST">
             @csrf 
             @method('DELETE')
             <input type="submit" value="delete">
@@ -48,7 +48,6 @@
 
     @empty
         <p>Not Posts</p>
-   
     @endforelse
     </table>
 @endsection
