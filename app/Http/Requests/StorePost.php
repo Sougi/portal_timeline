@@ -28,7 +28,8 @@ class StorePost extends FormRequest
                 'title'=> 'required|min:4|max:10' , 
                 'content' =>'required' , 
                 'slug' =>'required' , 
-                'active'=>'required'
+                'active'=>'required',
+                'body'=>'required'
             ];
         
     }

@@ -5,16 +5,16 @@
 
 
     <h1>Our Posts</h1> 
-
-    <table>
+    <div class="container">
+    <table class="table">
     <tr>
-        <th><strong>title</strong></th>
-        <th><strong>content</strong></th>
-        <th><strong>slug</strong></th>
-        <th><strong>active</strong></th>
-        <th><strong>body</strong></th>
-        <th><strong>created_at</strong></th>
-        <th>soso</th>
+        <th scope="col"><strong>title</strong></th>
+        <th scope="col"><strong>content</strong></th>
+        <th scope="col"><strong>slug</strong></th>
+        <th scope="col"><strong>active</strong></th>
+        <th scope="col"><strong>body</strong></th>
+        <th scope="col"><strong>created_at</strong></th>
+        <th scope="col">Action</th>
     </tr>
 
    
@@ -33,13 +33,13 @@
         </th>
         <th>{{$post->body}}</th>
         <th>{{$post->created_at->diffForHumans()}}</th>
-        <th><a href="{{route('posts.edit', ['post' => $post->id])}}">edit post</a>
+        <th><a href="{{route('posts.edit', ['post' => $post->id])}}" class="btn btn-info">edit post</a>
         
-        <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST">
+    <form class="form-inline" style=" display: inline" action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST">
             @csrf 
             @method('DELETE')
-            <input type="submit" value="delete">
-            </form>
+            <input type="submit" value="delete" class="btn btn-danger">
+    </form>
         </span>
 
         </th>
@@ -47,8 +47,9 @@
     </tr>
 
     @empty
-        <p>Not Posts</p>
+        <span class="badge badge-danger">Not Posts</span>
     @endforelse
     </table>
+</div>
 @endsection
 

@@ -2,6 +2,7 @@
 
 @section('content')
 
+<h1>Edit Post</h1>
 <form action="{{route('posts.update' , ['post'=>$post->id])}}" method="POST">
     @csrf
     @method('PUT')
@@ -9,7 +10,10 @@
     @if($errors->any())
     <ul>
         @foreach ($errors->all() as $error)
-         <li style='color:red'>{{$error}}</li>
+       <div class="alert alert-danger" role="alert"> 
+        {{$error}}
+       </div>
+       
         @endforeach
     
     </ul>
@@ -19,7 +23,7 @@
 
 @include('posts.form')
 
-    <button type="submit">Edit post</button>
+    <button type="submit" class="btn btn-warning">Edit post</button>
 </form>
 
     
