@@ -17,8 +17,11 @@ class PostController extends Controller
     public function index()
     {
 
+        $posts = Post::withCount('comment')->get() ;
+
+
         return view('posts.index',[
-            'posts' =>Post::all()
+            'posts' =>$posts
             // 'posts' => []
             ]);
     }

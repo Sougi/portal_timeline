@@ -14,6 +14,8 @@
         <th scope="col"><strong>active</strong></th>
         <th scope="col"><strong>body</strong></th>
         <th scope="col"><strong>created_at</strong></th>
+        <th scope="col"><strong>Nombre des Commentaires</strong></th>
+
         <th scope="col">Action</th>
     </tr>
 
@@ -33,6 +35,14 @@
         </th>
         <th>{{$post->body}}</th>
         <th>{{$post->created_at->diffForHumans()}}</th>
+        @if($post->comment_count)
+         <th class="badge badge-success mx-5 my-2">{{$post->comment_count}}</th>
+         @else 
+         <th class="badge badge-danger mx-4 my-2">No Comments Yet</th>
+         @endif
+        
+        
+        
         <th><a href="{{route('posts.edit', ['post' => $post->id])}}" class="btn btn-info">edit post</a>
         
     <form class="form-inline" style=" display: inline" action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST">
